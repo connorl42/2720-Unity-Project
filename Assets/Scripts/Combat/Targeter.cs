@@ -21,4 +21,16 @@ public class Targeter : MonoBehaviour
         
         _targets.Remove(target);
     }
+
+    public bool HasTarget()
+    {
+        if (_targets.Count == 0)
+            return false;
+        return true;
+    }
+
+    public Target GetTarget()
+    {
+        return _targets[0];
+    }
 }

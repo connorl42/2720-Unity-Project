@@ -1482,7 +1482,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   animationSpeed: 1
   ikHands: {fileID: 0}
-  target: {fileID: 0}
+  target: {fileID: 2353758638064459319}
   rightWeapon: 0
   leftWeapon: 0
 --- !u!54 &3925397721973561328
