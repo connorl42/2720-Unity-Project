@@ -110,14 +110,18 @@ public class PlayerInputSystemController : MonoBehaviour
                 _inputAim = !_inputAim;
                 if (_inputAim)
                 {
-                    if (_targeter.HasTarget())
+                    if (_targeter.SelectTarget())
                     {
-                        _currentTarget = _targeter.GetTarget();
+                        _currentTarget = _targeter.CurrentTarget;
                     }
                     else
                     {
                         _inputAim = false;
                     }
+                }
+                else
+                {
+                    _targeter.Cancel();
                 }
             }
         }
