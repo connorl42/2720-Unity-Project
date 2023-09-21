@@ -7,12 +7,19 @@ public class Targeter : MonoBehaviour
 {
     [SerializeField] private CinemachineTargetGroup _targetGroup;
     [SerializeField] private CinemachineVirtualCamera _targetingCamera;
+
+
+    public Target CurrentTarget { get; private set; }
+    
     List<Target> _targets = new List<Target>();
     
-    public Target CurrentTarget { get; private set; }
-
-
     private Camera _mainCamera;
+    private PlayerInputSystemController _playerInputController;
+
+    private void Awake()
+    {
+        _playerInputController = GetComponent<PlayerInputSystemController>();
+    }
 
     private void Start()
     {
@@ -43,6 +50,7 @@ public class Targeter : MonoBehaviour
             _targetingCamera.Priority = 9;
             _targetGroup.RemoveMember(CurrentTarget.transform);
             CurrentTarget = null;
+            _playerInputController.CancelInputAim();
         }
 
         target.OnDestroyed -= RemoveTarget;

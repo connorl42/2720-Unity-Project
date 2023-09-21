@@ -259,6 +259,12 @@ public class PlayerInputSystemController : MonoBehaviour
         // Perform the weapon switch using the SwitchWeaponContext created earlier.
         if (doSwitch) { _rpgCharacterController.TryStartAction(HandlerTypes.SwitchWeapon, switchWeaponContext); }
     }
+
+    public void CancelInputAim()
+    {
+        _inputAim = false;
+
+    }
 }
 
 /// <summary>
