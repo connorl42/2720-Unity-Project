@@ -9,8 +9,8 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] private List<GameObject> _weaponTriggerVolumes = new List<GameObject>();
 
     private Animator _animator;
-
     private int _currentIndex = 0;
+    private WeaponData _weaponData;
 
 
     private void Awake()
@@ -22,12 +22,22 @@ public class PlayerWeaponController : MonoBehaviour
     {
         var animatorEvents = _animator.gameObject.GetComponent<RPGCharacterAnimatorEvents>();
         animatorEvents.OnWeaponSwitch.AddListener(WeaponSwitch);
+        animatorEvents.OnHit.AddListener(Hit);
 
         for (int i = 1; i < _weaponTriggerVolumes.Count; i++)
         {
             _weaponTriggerVolumes[i].SetActive(false);
         }
 
+        _weaponData = _weaponTriggerVolumes[_currentIndex].GetComponent<WeaponData>();
+    }
+
+    private void Hit()
+    {
+        foreach (Health enemy in _weaponData.Enemies)
+        {
+            enemy.DealDamage(_weaponData.Damage); //tells amount of damage; add player count + weapon later?
+        }
     }
 
     private void WeaponSwitch()
@@ -41,7 +51,9 @@ public class PlayerWeaponController : MonoBehaviour
         {
             _currentIndex++;
         }
-
+        
+        _weaponData.ClearEnemies();
+        _weaponData = _weaponTriggerVolumes[_currentIndex].GetComponent<WeaponData>();
         _weaponTriggerVolumes[_currentIndex].SetActive(true);
     }
 }
