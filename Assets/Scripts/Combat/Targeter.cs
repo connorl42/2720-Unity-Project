@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Cinemachine;
+using Combat;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Targeter : MonoBehaviour
 {
     [SerializeField] private CinemachineTargetGroup _targetGroup;
     [SerializeField] private CinemachineVirtualCamera _targetingCamera;
+    [SerializeField] private GameObject _target;
 
 
     public Target CurrentTarget { get; private set; }
@@ -15,16 +18,34 @@ public class Targeter : MonoBehaviour
     
     private Camera _mainCamera;
     private PlayerInputSystemController _playerInputController;
-
+    
+    
+    private bool _activeCursor = false;
+    
     private void Awake()
     {
         _playerInputController = GetComponent<PlayerInputSystemController>();
+        
     }
 
     private void Start()
     {
         _mainCamera = Camera.main;
-        ;
+        
+
+    }
+
+    private void Update()
+    {
+
+        if (_activeCursor)
+        {
+            /*//move crosshair to target
+            GameObject _crossHair = GameObject.FindGameObjectWithTag("Crosshair"); //finds and labels crosshair component
+            _crossHair.transform.position = CurrentTarget.transform.position; */
+        }
+        
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,6 +62,7 @@ public class Targeter : MonoBehaviour
         if (!other.TryGetComponent<Target>(out Target target)) return;
         
         RemoveTarget(target);
+        
     }
 
     void RemoveTarget(Target target)
@@ -52,6 +74,13 @@ public class Targeter : MonoBehaviour
             CurrentTarget = null;
             _playerInputController.CancelInputAim();
         }
+
+        _activeCursor = false;
+        GameObject _crossHair = GameObject.FindGameObjectWithTag("Crosshair"); //finds and labels crosshair component
+        _crossHair.transform.position = new Vector3(1000, 1, 1000);
+
+
+
 
         target.OnDestroyed -= RemoveTarget;
         _targets.Remove(target);
@@ -86,7 +115,12 @@ public class Targeter : MonoBehaviour
         _targetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
         _targetingCamera.Priority = 11;
 
-        return true;
+        _activeCursor = true;
+        GameObject _crossHair = GameObject.FindGameObjectWithTag("Crosshair"); //finds and labels crosshair component
+        _crossHair.transform.position = CurrentTarget.transform.position;
+       
+
+       return true;
     }
 
     public void Cancel()

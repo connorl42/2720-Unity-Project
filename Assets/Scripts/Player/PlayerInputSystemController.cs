@@ -1,4 +1,5 @@
 using System;
+using Combat;
 using RPGCharacterAnims;
 using RPGCharacterAnims.Actions;
 using RPGCharacterAnims.Lookups;
