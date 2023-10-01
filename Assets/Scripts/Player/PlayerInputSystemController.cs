@@ -26,6 +26,7 @@ public class PlayerInputSystemController : MonoBehaviour
     bool _inputSwitchUp;
     
     //Variables
+    private Health _health;
     Vector3 _moveInput;
     private Target _currentTarget;
     float _inputPauseTimeout = 0;
@@ -36,6 +37,7 @@ public class PlayerInputSystemController : MonoBehaviour
         _targeter = GetComponent<Targeter>();
         _rpgCharacterController = GetComponent<RPGCharacterController>();
         _playerInputs = new PlayerInputs();
+        _health = GetComponent<Health>();
     }
 
     void OnEnable()
@@ -61,6 +63,8 @@ public class PlayerInputSystemController : MonoBehaviour
         }
 
         if (!_inputPaused) { Inputs(); }
+
+        if (!_health.IsAlive()) return;
 
         Moving();
         Jumping();

@@ -20,7 +20,9 @@ public class Enemy : MonoBehaviour
     private RPGCharacterController _rpgCharacterController;
     private RPGCharacterNavigationController _rpgNavigationController;
     private NavMeshAgent _navMeshAgent;
+    private Health _health;
     private GameObject _player;
+    private Health _playerHealth;
     private Vector3 _targetPosition;
     private Vector3 _originalPosition;
     private bool _aggro = false;
@@ -31,11 +33,13 @@ public class Enemy : MonoBehaviour
         _rpgCharacterController = GetComponent<RPGCharacterController>();
         _rpgNavigationController = GetComponent<RPGCharacterNavigationController>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _health = GetComponent<Health>();
     }
 
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _playerHealth = _player.GetComponent<Health>();
         _rpgCharacterController.target = _player.transform;
         _originalPosition = transform.position;
     }
@@ -43,6 +47,7 @@ public class Enemy : MonoBehaviour
    
     void Update()
     {
+        if (!_health.IsAlive()) return;
         if (InDetectionRange())
         {
             _aggro = true;
@@ -74,6 +79,7 @@ public class Enemy : MonoBehaviour
 
     bool InDetectionRange()
     {
+        if (!_playerHealth.IsAlive()) return false;
         float playerDistanceSqr = (_player.transform.position - transform.position).sqrMagnitude;
 
         return playerDistanceSqr <= _detectionRange * _detectionRange;
@@ -101,7 +107,7 @@ public class Enemy : MonoBehaviour
     void Attack()
     {
         _rpgCharacterController.StartAction(HandlerTypes.Attack, new AttackContext(HandlerTypes.Attack, Side.Right));
-        _player.GetComponent<Health>().DealDamage(_damage);
+        _playerHealth.DealDamage(_damage);
     }
 
     private void OnDrawGizmosSelected()
