@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using RPGCharacterAnims;
+using RPGCharacterAnims.Actions;
 using RPGCharacterAnims.Lookups;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _detectionRange = 15f;
     [SerializeField] private float _attackRange = 2f;
     [SerializeField] private float _rotationSpeed = 1f;
+    [SerializeField] private float _timeBetweenAttacks = 3f;
+    [SerializeField] private int _damage = 10;
 
     private RPGCharacterController _rpgCharacterController;
     private RPGCharacterNavigationController _rpgNavigationController;
@@ -21,6 +24,7 @@ public class Enemy : MonoBehaviour
     private Vector3 _targetPosition;
     private Vector3 _originalPosition;
     private bool _aggro = false;
+    private float _timeSinceLastAttack = 0;
 
     private void Awake()
     {
@@ -46,13 +50,19 @@ public class Enemy : MonoBehaviour
             if (!InAttackRange())
             {
                 _rpgCharacterController.StartAction(HandlerTypes.Navigation, _targetPosition);
+                _timeSinceLastAttack = 0;
             }
             else
             {
                 _rpgNavigationController.StopNavigating();
                 _rpgNavigationController.StopAnimation();
                 RotateTowardsTarget();
-                
+                _timeSinceLastAttack += Time.deltaTime;
+                if (_timeSinceLastAttack >= _timeBetweenAttacks)
+                {
+                    Attack();
+                    _timeSinceLastAttack = 0;
+                }
             }
         }
         else if (_aggro)
@@ -86,6 +96,12 @@ public class Enemy : MonoBehaviour
     public void Reset()
     {
         _rpgCharacterController.StartAction(HandlerTypes.Navigation, _originalPosition);
+    }
+
+    void Attack()
+    {
+        _rpgCharacterController.StartAction(HandlerTypes.Attack, new AttackContext(HandlerTypes.Attack, Side.Right));
+        _player.GetComponent<Health>().DealDamage(_damage);
     }
 
     private void OnDrawGizmosSelected()

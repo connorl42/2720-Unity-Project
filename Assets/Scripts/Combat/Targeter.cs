@@ -75,9 +75,9 @@ public class Targeter : MonoBehaviour
             _playerInputController.CancelInputAim();
         }
 
-        _activeCursor = false;
+        /*_activeCursor = false;
         GameObject _crossHair = GameObject.FindGameObjectWithTag("Crosshair"); //finds and labels crosshair component
-        _crossHair.transform.position = new Vector3(1000, 1, 1000);
+        _crossHair.transform.position = new Vector3(1000, 1, 1000);*/
 
 
 

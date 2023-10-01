@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class PatrolController : MonoBehaviour
 {
-    [SerializeField] private NavigationController _navigationController;
+    [SerializeField] private RPGCharacterNavigationController _rpgNavigationController;
     [SerializeField] private float _waitTime = 3f;
     [SerializeField] private float _gizmoRadius = 0.3f;
 
@@ -27,7 +27,7 @@ public class PatrolController : MonoBehaviour
         if (_waypoints.Count > 0)
         {
             _targetPosition = _waypoints[_currentIndex].position;
-            _navigationController.MoveTo(_targetPosition);
+            _rpgNavigationController.MeshNavToPoint(_targetPosition);
         }
     }
     
@@ -40,7 +40,7 @@ public class PatrolController : MonoBehaviour
 
      void Patrol()
     {
-        if (!_navigationController.HasPath() && !_waiting)
+        if (!_rpgNavigationController.navMeshAgent.hasPath && !_waiting)
         {
             StartCoroutine(PausePatrol());
         }
@@ -51,7 +51,7 @@ public class PatrolController : MonoBehaviour
          _targetPosition = NextWayPoint();
          _waiting = true;
          yield return new WaitForSeconds(_waitTime);
-         _navigationController.MoveTo(_targetPosition);
+         _rpgNavigationController.MeshNavToPoint(_targetPosition);
          _waiting = false;
      }
 

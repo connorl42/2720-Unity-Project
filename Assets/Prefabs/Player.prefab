@@ -546,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417510190}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.017690668, y: -0.000000017203691, z: -3.0439237e-10, w: 0.99984354}
+  m_LocalRotation: {x: -0.017690668, y: 0.000000017203687, z: 3.0439232e-10, w: 0.99984354}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -752,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966539066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0004508602, y: -0.000000017206295, z: 7.757635e-12, w: 0.99999994}
+  m_LocalRotation: {x: 0.00045086103, y: 0.000000017208622, z: -7.758698e-12, w: 0.99999994}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -832,7 +832,7 @@ Transform:
   m_GameObject: {fileID: 358245827307012194}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08767329, y: -0.84828913, z: 0.14849283, w: -0.5006684}
-  m_LocalPosition: {x: -0.00000013765106, y: 0, z: 4.0941577}
+  m_LocalPosition: {x: 0.00000013765106, y: 0.00000017881393, z: 4.0941577}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 4951076086703109950}
   - component: {fileID: 3885939816839376371}
   - component: {fileID: 796889832463236015}
+  - component: {fileID: 2663237487205414777}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1082,7 +1083,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1184,6 +1185,19 @@ MonoBehaviour:
   _weaponTriggerVolumes:
   - {fileID: 9089146185000601767}
   - {fileID: 1464479088840467286}
+--- !u!114 &2663237487205414777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382432086659536159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f039605c7021b4f998441e9aad34e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!1 &1382432087255037955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,6 +1293,7 @@ GameObject:
   - component: {fileID: 3589185052613684945}
   - component: {fileID: 8971597015427417958}
   - component: {fileID: 9206351800600652192}
+  - component: {fileID: 5693485988850180276}
   m_Layer: 0
   m_Name: 2HSwordTriggerVolume
   m_TagString: Untagged
@@ -1349,6 +1364,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.38, y: 2.15, z: 2.07}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5693485988850180276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464479088840467286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b082790c4139c184d84b669afbb63ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemies: []
+  Damage: 50
 --- !u!1 &2460526698671790032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2460526698671790032}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10723364, y: 0.000000017107167, z: -0.0000000018451031, w: 0.99423385}
+  m_LocalRotation: {x: 0.10723364, y: -0.000000017107167, z: 0.0000000018451031, w: 0.99423385}
   m_LocalPosition: {x: 0, y: 3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1604,6 +1633,7 @@ GameObject:
   - component: {fileID: 5726661799763646441}
   - component: {fileID: 3375589231377360636}
   - component: {fileID: 2464354324315029725}
+  - component: {fileID: 5936448354278861740}
   m_Layer: 0
   m_Name: UnarmedTriggerVolume
   m_TagString: Untagged
@@ -1674,6 +1704,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.13, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5936448354278861740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9089146185000601767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b082790c4139c184d84b669afbb63ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemies: []
+  Damage: 10
 --- !u!1001 &1382432088600378046
 PrefabInstance:
   m_ObjectHideFlags: 0

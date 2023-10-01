@@ -7,12 +7,11 @@ public class WeaponData : MonoBehaviour
 {
    public List<Health> Enemies;
    public int Damage = 10;
-
-   [SerializeField] private Collider _myCollider;
+   
 
    private void OnTriggerEnter(Collider other)
    {
-      if (other == _myCollider) return;
+      if (other.gameObject.CompareTag("Player")) return;
 
       if (other.TryGetComponent(out Health health))
       {
@@ -22,7 +21,7 @@ public class WeaponData : MonoBehaviour
 
    private void OnTriggerExit(Collider other)
    {
-      if (other == _myCollider) return;
+      if (other.gameObject.CompareTag("Player")) return;
 
       if (other.TryGetComponent(out Health health))
       {
