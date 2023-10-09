@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 1f;
     [SerializeField] private float _timeBetweenAttacks = 3f;
     [SerializeField] private int _damage = 10;
+    
+    
+    public AudioSource _combatMusic;
+    public bool _musicPlaying = false;
 
     private RPGCharacterController _rpgCharacterController;
     private RPGCharacterNavigationController _rpgNavigationController;
@@ -27,6 +31,8 @@ public class Enemy : MonoBehaviour
     private Vector3 _originalPosition;
     private bool _aggro = false;
     private float _timeSinceLastAttack = 0;
+    
+    
 
     private void Awake()
     {
@@ -34,6 +40,7 @@ public class Enemy : MonoBehaviour
         _rpgNavigationController = GetComponent<RPGCharacterNavigationController>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _health = GetComponent<Health>();
+        
     }
 
     void Start()
@@ -42,15 +49,22 @@ public class Enemy : MonoBehaviour
         _playerHealth = _player.GetComponent<Health>();
         _rpgCharacterController.target = _player.transform;
         _originalPosition = transform.position;
+        _combatMusic = GetComponent<AudioSource>();
+
     }
 
    
     void Update()
     {
-        if (!_health.IsAlive()) return;
+        if (!_health.IsAlive())
+        {
+            StopCombatMusic();
+            return;
+        }
         if (InDetectionRange())
         {
             _aggro = true;
+            PlayCombatMusic(); //makes music start when in combat
             _targetPosition = _rpgCharacterController.target.transform.position;
             if (!InAttackRange())
             {
@@ -74,6 +88,7 @@ public class Enemy : MonoBehaviour
         {
             _aggro = false;
             Reset();
+            StopCombatMusic();
         }
     }
 
@@ -117,4 +132,34 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _attackRange);
     }
+
+    void PlayCombatMusic()
+    {
+        if (_combatMusic.isPlaying)
+        {
+            return;
+        }
+        else if (!_musicPlaying)
+        {
+            _combatMusic.Play();
+            _musicPlaying = true;
+        }
+        
+        
+    }
+
+    void StopCombatMusic()
+    {
+        if (_combatMusic.isPlaying && _musicPlaying)
+        {
+            _combatMusic.Stop();
+            _musicPlaying = false;
+        }
+        else 
+        {
+            return;
+        }
+    }
+
+  
 }
