@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfc15bb66136bf4ca33a46991d4e790, type: 3}
   m_Name: NewDialogue 1
   m_EditorClassIdentifier: 
-  _nodes: []
