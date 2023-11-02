@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6531163537870454846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: 41aefb3a-70a0-4f19-a820-827b3b0fa2e9
+  m_EditorClassIdentifier: 
+  _isPlayer: 1
+  _text: Can you explain the request for me?
+  _children:
+  - 5f9320cd-e789-4391-8884-48aa89741f2a
+  _rect:
+    serializedVersion: 2
+    x: 553
+    y: 210
+    width: 200
+    height: 100
+--- !u!114 &-2347763343751019080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: a10088f9-368f-4396-bd40-d598172a7db2
+  m_EditorClassIdentifier: 
+  _isPlayer: 1
+  _text: I'll collect fish from the river.
+  _children:
+  - ca1fc0bd-baca-4801-8bb6-a0282df7d9c5
+  _rect:
+    serializedVersion: 2
+    x: 1055
+    y: 171
+    width: 200
+    height: 100
+--- !u!114 &-1981775291122497407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: bea3e733-b453-4c45-afdb-6cba240e4ec0
+  m_EditorClassIdentifier: 
+  _isPlayer: 0
+  _text: What can I do for you today?
+  _children:
+  - 16bae780-be77-46cf-9f86-187b881749ed
+  - 41aefb3a-70a0-4f19-a820-827b3b0fa2e9
+  _rect:
+    serializedVersion: 2
+    x: 316
+    y: 134
+    width: 200
+    height: 100
+--- !u!114 &-765952756445555476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: 9ff85a03-7042-4242-81f4-ffef5faff7ec
+  m_EditorClassIdentifier: 
+  _isPlayer: 0
+  _text: Hello!
+  _children:
+  - bea3e733-b453-4c45-afdb-6cba240e4ec0
+  _rect:
+    serializedVersion: 2
+    x: 19.000015
+    y: 35
+    width: 200
+    height: 100
+--- !u!114 &-471016810602224985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: ca1fc0bd-baca-4801-8bb6-a0282df7d9c5
+  m_EditorClassIdentifier: 
+  _isPlayer: 0
+  _text: Excellent! Here are the mission details.
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 1322
+    y: 191.99998
+    width: 200
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfc15bb66136bf4ca33a46991d4e790, type: 3}
+  m_Name: NewDialogue
+  m_EditorClassIdentifier: 
+  _nodes:
+  - {fileID: -765952756445555476}
+  - {fileID: -1981775291122497407}
+  - {fileID: 4543769063829791566}
+  - {fileID: -6531163537870454846}
+  - {fileID: 1909579519265470994}
+  - {fileID: 5146098178821159675}
+  - {fileID: 5486438187664754745}
+  - {fileID: 260033091558129151}
+  - {fileID: -2347763343751019080}
+  - {fileID: -471016810602224985}
+--- !u!114 &260033091558129151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: 8edc79a9-6022-40b4-b7f1-cb1cd05fe2f3
+  m_EditorClassIdentifier: 
+  _isPlayer: 1
+  _text: I'll escort the trade caravan.
+  _children:
+  - ca1fc0bd-baca-4801-8bb6-a0282df7d9c5
+  _rect:
+    serializedVersion: 2
+    x: 1044
+    y: 265.99997
+    width: 200
+    height: 100
+--- !u!114 &1909579519265470994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: 5f9320cd-e789-4391-8884-48aa89741f2a
+  m_EditorClassIdentifier: 
+  _isPlayer: 0
+  _text: Sure! If you are interested in working as a mercenary, you can accept jobs
+    here. All jobs are availible on wall over there.
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 796
+    y: 278
+    width: 200
+    height: 100
+--- !u!114 &4543769063829791566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: 16bae780-be77-46cf-9f86-187b881749ed
+  m_EditorClassIdentifier: 
+  _isPlayer: 1
+  _text: I would like to register for a job.
+  _children:
+  - e6187cb5-cb02-4c6d-bd80-8b175e9ec647
+  _rect:
+    serializedVersion: 2
+    x: 549
+    y: 64.99999
+    width: 200
+    height: 100
+--- !u!114 &5146098178821159675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: e6187cb5-cb02-4c6d-bd80-8b175e9ec647
+  m_EditorClassIdentifier: 
+  _isPlayer: 0
+  _text: Ok! Which job are you accepting today?
+  _children:
+  - b9c9db8e-422d-4e36-99ce-44d56b82b4a1
+  - 8edc79a9-6022-40b4-b7f1-cb1cd05fe2f3
+  - a10088f9-368f-4396-bd40-d598172a7db2
+  _rect:
+    serializedVersion: 2
+    x: 783
+    y: 61.999992
+    width: 200
+    height: 100
+--- !u!114 &5486438187664754745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a1d615f7c09174fb546d50cc02ba2d, type: 3}
+  m_Name: b9c9db8e-422d-4e36-99ce-44d56b82b4a1
+  m_EditorClassIdentifier: 
+  _isPlayer: 1
+  _text: I'll defeat the bears in the woods.
+  _children:
+  - ca1fc0bd-baca-4801-8bb6-a0282df7d9c5
+  _rect:
+    serializedVersion: 2
+    x: 1033
+    y: 61.999992
+    width: 200
+    height: 100

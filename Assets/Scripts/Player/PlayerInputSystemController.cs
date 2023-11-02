@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using Combat;
 using RPGCharacterAnims;
 using RPGCharacterAnims.Actions;
@@ -7,8 +8,9 @@ using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputSystemController : MonoBehaviour
+public class PlayerInputSystemController : MonoBehaviour, ISaveable
 {
+    [SerializeField] private CinemachineInputProvider _cinemachineInputProvider;
     public PlayerInputs _playerInputs;
 
     private Targeter _targeter;
@@ -19,6 +21,7 @@ public class PlayerInputSystemController : MonoBehaviour
     bool _inputAttackL;
     bool _inputAttackR;
     bool _inputRoll;
+    private bool _inputInteract;
     bool _inputAim = false;
     Vector2 _inputMovement;
     bool _inputFace;
@@ -31,6 +34,7 @@ public class PlayerInputSystemController : MonoBehaviour
     private Target _currentTarget;
     float _inputPauseTimeout = 0;
     bool _inputPaused = false;
+    private bool _UIPause = false;
 
     void Awake()
     {
@@ -62,7 +66,7 @@ public class PlayerInputSystemController : MonoBehaviour
             else { return; }
         }
 
-        if (!_inputPaused) { Inputs(); }
+        if (!_inputPaused && !_UIPause) { Inputs(); }
 
         if (!_health.IsAlive()) return;
 
@@ -74,12 +78,26 @@ public class PlayerInputSystemController : MonoBehaviour
         Aiming();
         Rolling();
         Attacking();
+        Interacting();
     }
 
     public void PauseInput(float timeout)
     {
         _inputPaused = true;
         _inputPauseTimeout = Time.time + timeout;
+    }
+
+    public void Pause()
+    {
+        _UIPause = true;
+        _cinemachineInputProvider.enabled = false;
+        _inputMovement = new Vector2(0, 0);
+    }
+
+    public void Unpause()
+    {
+        _UIPause = false;
+        _cinemachineInputProvider.enabled = true;
     }
 
     void Inputs()
@@ -94,6 +112,7 @@ public class PlayerInputSystemController : MonoBehaviour
             _inputMovement = _playerInputs.Player.Move.ReadValue<Vector2>();
             _inputRoll = _playerInputs.Player.Roll.WasPressedThisFrame();
             _inputSwitchUp = _playerInputs.Player.WeaponUp.WasPressedThisFrame();
+            _inputInteract = _playerInputs.Player.Interact.WasPressedThisFrame();
             
             // Slow time toggle.
             if (Keyboard.current.tKey.wasPressedThisFrame) {
@@ -160,6 +179,22 @@ public class PlayerInputSystemController : MonoBehaviour
         if (!_rpgCharacterController.CanStartAction("DiveRoll")) { return; }
 
         _rpgCharacterController.StartAction("DiveRoll", 1);
+    }
+
+    void Interacting()
+    {
+        if (!_inputInteract) return;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5f);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject.GetComponent<AIDialogue>())
+            {
+                hitCollider.gameObject.GetComponent<AIDialogue>().StartDialogue();
+                _inputInteract = false;
+                break;
+            }
+        }
     }
 
     void Aiming()
@@ -269,6 +304,17 @@ public class PlayerInputSystemController : MonoBehaviour
     {
         _inputAim = false;
 
+    }
+
+    public object CaptureState()
+    {
+        return new SerializableVector3(transform.position);
+    }
+
+    public void RestoreState(object state)
+    {
+        SerializableVector3 position = (SerializableVector3)state;
+        transform.position = position.ToVector();
     }
 }
 

@@ -1900,6 +1900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _audioSource1: {fileID: 0}
+  _audioSource2: {fileID: 0}
 --- !u!195 &6640252557083550890
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1955,6 +1957,10 @@ MonoBehaviour:
   _detectionRange: 15
   _attackRange: 2
   _rotationSpeed: 1
+  _timeBetweenAttacks: 3
+  _damage: 10
+  _combatMusic: {fileID: 0}
+  _musicPlaying: 0
 --- !u!1 &6589073470083061628
 GameObject:
   m_ObjectHideFlags: 0
